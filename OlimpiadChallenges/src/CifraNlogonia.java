@@ -17,8 +17,13 @@ public class CifraNlogonia {
             if (isConsoante(c)){
                 cifra.append(c);
                 cifra.append(getVogalMaisProxima(c));
+                cifra.append(getProximaConsoante(c, alfabeto));
+            }else{
+                cifra.append(c);
             }
         }
+
+        return cifra.toString();
     }
 
     public static boolean isConsoante(char c){
@@ -40,6 +45,18 @@ public class CifraNlogonia {
                     break;
                 }
             }
+            return (c - anterior)<= (proxima-c)? (char)anterior: (char)proxima;
+        }else{
+            return c;
+        }
+    }
+
+    public static char getProximaConsoante(char c, String alfabeto){
+        int index = alfabeto.indexOf(c);
+        if(index== alfabeto.length() - 1){
+            return c;
+        }else{
+            return alfabeto.charAt(index+1);
         }
     }
 }
